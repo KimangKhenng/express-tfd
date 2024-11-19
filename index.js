@@ -1,21 +1,21 @@
 const express = require('express')
 const books = require('./src/models/book-model')
 const bookRouter = require('./src/routes/book-route')
+const bodyParser = require('body-parser')
 const { requestLogger } = require('./src/middlewares')
-// Sepeate file
-
-// Controller
-
-// Routes
-
+const dbConnect = require('./src/db/db')
 
 const PORT = 3000
 
 const app = express()
 
+dbConnect().catch((err) => {
+    console.log(err)
+})
+
 // Middleware to log request
 
-
+app.use(bodyParser.json())
 app.use(requestLogger)
 
 // app.get('/', middlware, (req, res) => {
@@ -44,7 +44,7 @@ app.use(requestLogger)
 //     return res.json(book)
 // })
 
-app.use('/books', bookRouter)
+app.use('/v1/books', bookRouter)
 
 app.listen(PORT, () => {
     console.log(`Web server listening on port ${PORT}`)
