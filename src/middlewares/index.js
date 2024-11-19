@@ -12,4 +12,8 @@ function middlware(req, res, next) {
     next()
 }
 
-module.exports = { requestLogger, middlware }
+function handleError(error, req, res, next) {
+    return res.status(500).json({ msg: error.message })
+}
+
+module.exports = { requestLogger, middlware, handleError }
