@@ -1,8 +1,15 @@
 const mongoose = require('mongoose')
 
 const bookSchema = new mongoose.Schema({
-    title: String,
-    page: Number
+    title: {
+        type: String,
+        required: true
+    },
+    page: {
+        type: Number,
+        required: true
+    },
+    url: { type: String, required: false }
 })
 
 const bookModel = mongoose.model('books', bookSchema)
