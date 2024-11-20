@@ -1,0 +1,12 @@
+const { deleteById, updateById, getAllUsers, createUser, getUserById } = require('../controllers/user-controller')
+
+
+const userRouter = require('express').Router()
+
+userRouter.get('/', getAllUsers)
+userRouter.post('/', createUser)
+userRouter.get('/:bookId', getUserById)
+userRouter.delete('/:id', deleteById)
+userRouter.patch('/:id', updateById)
+
+module.exports = userRouter

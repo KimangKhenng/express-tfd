@@ -1,23 +1,26 @@
 const mongoose = require('mongoose')
 
-const bookSchema = new mongoose.Schema({
+const courseSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        maxLength: 500
+        maxLength: 50
     },
-    page: {
+    price: {
         type: Number,
         required: true
     },
     url: { type: String, required: false },
-    author: [{
+    instructors: [{
         type: mongoose.Types.ObjectId,
-        ref: 'users',
+        ref: 'users'
+    }],
+    descriptions: {
+        type: String,
         required: true
-    }]
+    }
 })
 
-const bookModel = mongoose.model('books', bookSchema)
+const courseModel = mongoose.model('courses', courseSchema)
 
-module.exports = bookModel
+module.exports = courseModel

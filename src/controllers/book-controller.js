@@ -2,7 +2,7 @@ const bookModel = require('../models/book-model')
 const asyncHandler = require('express-async-handler')
 
 const getAllBooks = asyncHandler(async (req, res) => {
-    const books = await bookModel.find({})
+    const books = await bookModel.find({}).populate(req.query.populate)
     return res.json(books)
 })
 
