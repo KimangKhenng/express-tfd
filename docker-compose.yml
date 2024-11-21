@@ -1,0 +1,24 @@
+services:
+  express-tfd:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: express-tfd
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/app/src
+      - ./index.js:/app/index.js
+      - .env:/app/.env
+    depends_on:
+      - mongo-tfd
+  mongo-tfd:
+    # Find Docker Hub, MongoDB version 8.0.3
+    image: mongo:8.0.3
+    container_name: mongo-tfd
+    ports:
+      - "22236:27017"
+    volumes:
+      - mongodbdata:/data/db
+volumes:
+  mongodbdata:

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-const mongoURI = "mongodb://localhost:22236"
-const dbName = "tfd-db"
+const mongoURI = `mongodb://${process.env.MONGO_HOST}:27017`
+const dbName = process.env.MONGO_DB
 
 async function dbConnect() {
     mongoose.connection.on('connected', () => {

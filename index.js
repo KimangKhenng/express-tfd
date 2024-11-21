@@ -1,12 +1,12 @@
+require('dotenv').config()
 const express = require('express')
-const books = require('./src/models/book-model')
 const bookRouter = require('./src/routes/book-route')
 const bodyParser = require('body-parser')
 const { requestLogger, handleError } = require('./src/middlewares')
 const dbConnect = require('./src/db/db')
 const userRouter = require('./src/routes/user-routejs')
 
-const PORT = 3000
+const PORT = process.env.PORT
 
 const app = express()
 
@@ -18,6 +18,10 @@ dbConnect().catch((err) => {
 app.use(bodyParser.json())
 app.use(requestLogger)
 
+// Exercise
+/**
+ * Finish Course Controller, Course Routes, Course Fixture
+ */
 
 app.use('/v1/books', bookRouter)
 app.use('/v1/users', userRouter)
